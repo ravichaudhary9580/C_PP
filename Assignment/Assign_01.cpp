@@ -22,7 +22,7 @@ int factorial(int n)
 }
 
 //Program 3
-void swap(int* a, int* b)
+void swap(int *a, int *b)
 {
     int temp;
     temp=*a;
