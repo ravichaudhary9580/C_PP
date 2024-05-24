@@ -58,7 +58,7 @@ long long int fact(int n)
     {
     fact=fact*i;
     }
-    return fact;
+    return fact;    
 }
 
 int combination(int n, int r)
