@@ -80,15 +80,15 @@ void printPascal(int lines)
             if(j>=lines+1-i&&j<=lines-1+i)
             {
                 if(space)    
-                printf("%d",combination(n,r++));
+                cout<<combination(n,r++);
                 else
-                printf(" ");
+                cout<<" ";
             space=1-space;
             }
             else
-            printf(" ");
+            cout<<" ";
         }
-        printf("\n");
+        cout<<"\n";
      }
 }
 
