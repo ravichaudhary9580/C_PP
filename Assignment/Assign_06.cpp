@@ -2,6 +2,7 @@
 #include<string.h>
 using namespace std;
 void sort(int arr[],int size,bool x=1);
+void sort(char str[],bool ascending=1);
 void rotate(int arr[],int size,int d,int n=1);
 
 //Program 1
@@ -198,6 +199,6 @@ void prime_factors(int n)
 }
 int main()
 {
-    prime_factors(89);
+    prime_factors(36);
     return 0;
 }

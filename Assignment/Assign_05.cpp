@@ -1,14 +1,21 @@
 #include<iostream>
+#include<math.h>
 using namespace std;
-int add(int a,int b,int c=0);
+void swap(int &,int &);
+int add(int ,int ,int=0);
+float area(float );
+float area(float ,float );
+float area(float ,float ,float );
+int max(int ,int );
+float max(float ,float );
 
 //Program 1
-void swap(int *a,int *b)
+void swap(int &a,int &b)
 {
     int temp;
-    temp=*a;
-    *a=*b;
-    *b=temp;
+    temp=a;
+    a=b;
+    b=temp;
 }
 
 //Program 2
@@ -33,7 +40,7 @@ float area(float a,float b,float c)
 {
     int s;
     s=(a+b+c)/2;
-    return sqrt(s(s-a)(s-b)(s-c));
+    return sqrt(s*(s-a)*(s-b)*(s-c));
 }
 
 //Program 4
