@@ -1,31 +1,45 @@
 #include<iostream>
+#include<string.h>
 using namespace std;
 struct Book
 {
-    int bookid;
-    char title [50];
-    float price;
+    private:
+        int bookid;
+        char title [50];
+        float price;
+    public:
+        void setBookid(int id)
+        {
+            if(id<0)
+                bookid=-id;
+            else
+                bookid=id;
+        }
+        void display()
+        {
+            cout<<bookid<<" "<<title<<" "<<price<<endl;
+        }
+        void input()
+        {
+            cout<<"Enter bookid title and price";
+            cin>>bookid;
+            if(bookid<0)
+            bookid=-bookid;
+            cin.ignore();
+            cin.getline(title,50); 
+            cin>>price;
+        }
 };
-void input(struct Book *);
-void display(struct Book );
+
 int main()
 {
-    struct Book b1={100,"C in Depth", 546.0f};
-    struct Book b2,b3;
-    b2.bookid=105;
+     Book b1={100,"C in Depth", 546.0f};
+     Book b2,b3;
+    b2.setBookid(-5);
     strcpy(b2.title, "C++ Made Easy");
     b2.price=630.0f;
-    input(&b3);
-    display(b1);
+    b3.input();
+    b3.display();
+    return 0;
 }
-void display(struct Book )
-{
-    cout<<b.bookid<<" "<<b.title<<" "<<b.price<<endl;
-}
-void input(struct Book *p)
-{
-    cout<<"Enter bookid title and price";
-    cin>>p->bookid;
-    cin.getline(p->title,50); 
-    cin>>p->price;
-}
+  
