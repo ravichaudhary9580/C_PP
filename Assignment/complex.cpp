@@ -14,17 +14,17 @@ class complex
         {
             cout<<"a="<<a<<" b="<<b<<endl;
         }
-     complex add(complex c1,complex c2)
+     complex add(complex c1,complex c2);    
+
+};
+
+ complex complex::add(complex c1,complex c2)
         { 
             complex add;
             add.a=c1.a+c2.a;
             add.b=c1.b+c2.b;
             return add;
         } 
-
-};
-
-
 void f1()
 {
     complex c1,c2,c3;
