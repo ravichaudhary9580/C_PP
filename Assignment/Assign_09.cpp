@@ -128,12 +128,12 @@ int pro2()
 class testResult
 {
     private:
-    int roll_no, right, worng, net_score;
+    int roll_no, right, wrong, net_score;
     public:
     void setData(int w,int x,int y,int z);
     void getData();
     float right_weightage();
-    float worng_weightage();
+    float wrong_weightage();
     void sort(int*);
 };
 
@@ -141,22 +141,22 @@ void testResult::setData(int w,int x,int y,int z)
 {
     roll_no=w;
     right=x;
-    worng=y;
+    wrong=y;
     net_score=z;
 }
 void testResult::getData()
 {
-    cout<<roll_no<<"  "<<right<<"  "<<worng<<"  "<<net_score<<endl;
+    cout<<roll_no<<"  "<<right<<"  "<<wrong<<"  "<<net_score<<endl;
 }
 float testResult::right_weightage()
 {
-    return (right/(right+worng))*100;
+    return (right/(right+wrong))*100;
 }
-float testResult::worng_weightage()
+float testResult::wrong_weightage()
 {
-    return (worng/(right+worng))*100;
+    return (wrong/(right+wrong))*100;
 }
-void testResult::sort(testResult arr[])
+void testResult::sort(int arr)
 {
  for(int j=1;j<5;j++)
     {
@@ -183,7 +183,7 @@ int main()
     arr[3].setData(104,17,3,85);
     arr[4].setData(105,8,12,40);
 
-    arr[0].sort(&arr[0]);
+    arr[0].sort(arr[0]);
     cout<<"Roll No.  "<<"Right  "<<"Wrong  "<<"Net Score"<<endl;
     for(int i=0;i<5;i++)
     {
