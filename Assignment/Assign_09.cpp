@@ -134,7 +134,7 @@ class testResult
     void getData();
     float right_weightage();
     float wrong_weightage();
-    void sort(int*);
+    void sort(testResult arr[]);
 };
 
 void testResult::setData(int w,int x,int y,int z)
@@ -146,7 +146,7 @@ void testResult::setData(int w,int x,int y,int z)
 }
 void testResult::getData()
 {
-    cout<<roll_no<<"  "<<right<<"  "<<wrong<<"  "<<net_score<<endl;
+    cout<<"  "<<roll_no<<"      "<<right<<"      "<<wrong<<"        "<<net_score<<endl;
 }
 float testResult::right_weightage()
 {
@@ -156,7 +156,7 @@ float testResult::wrong_weightage()
 {
     return (wrong/(right+wrong))*100;
 }
-void testResult::sort(int arr)
+void testResult::sort(testResult arr[])
 {
  for(int j=1;j<5;j++)
     {
@@ -173,21 +173,133 @@ void testResult::sort(int arr)
     }
 }
 //Program 4
-int main()
+int pro4()
 {
     testResult arr[5];
 
     arr[0].setData(101,12,8,60);
-    arr[1].setData(102,10,10,50);
+    arr[1].setData(102,9,11,45);
     arr[2].setData(103,14,6,70);
     arr[3].setData(104,17,3,85);
     arr[4].setData(105,8,12,40);
 
-    arr[0].sort(arr[0]);
+    arr[0].sort(arr);
     cout<<"Roll No.  "<<"Right  "<<"Wrong  "<<"Net Score"<<endl;
     for(int i=0;i<5;i++)
     {
         arr[i].getData();
     }
+    return 0;
+}
+
+//Program 5
+class Matrix
+{
+    private:
+    int arr[3][3];
+    public:
+    void setData();
+    void getData();
+    Matrix add(Matrix);
+    Matrix sub(Matrix x);
+    Matrix multiply(Matrix x);
+    Matrix transpose();
+    bool is_singular();
+};
+void Matrix::setData()
+    {
+        cout<<"Enter the value of 3x3 matrix:";
+        for(int j=0;j<3;j++){
+            for(int i=0;i<3;i++){
+                cin>>arr[j][i];
+            }
+        }
+    }
+void Matrix::getData()
+{
+    for(int j=0;j<3;j++){
+        for(int i=0;i<3;i++){
+            cout<<arr[j][i]<<" ";
+        }
+        cout<<endl;
+    }
+} 
+Matrix Matrix::add(Matrix x)
+{
+    Matrix temp; 
+        for(int j=0;j<3;j++){
+            for(int i=0;i<3;i++){
+               temp.arr[j][i]=arr[j][i]+x.arr[j][i];
+            }
+        }
+    return temp;
+}
+Matrix Matrix::sub(Matrix x)
+{
+    Matrix temp; 
+        for(int j=0;j<3;j++){
+            for(int i=0;i<3;i++){
+               temp.arr[j][i]=arr[j][i]-x.arr[j][i];
+            }
+        }
+    return temp;
+}
+Matrix Matrix::multiply(Matrix x)
+{
+    Matrix temp;
+        for(int j=0;j<3;j++){
+            for(int i=0;i<3;i++){
+               temp.arr[j][i]=arr[j][0]*x.arr[0][i]+arr[j][1]*x.arr[1][i]+arr[j][2]*x.arr[2][i];
+            }
+        }
+    return temp; 
+    
+}
+Matrix Matrix::transpose()
+{
+    Matrix temp;
+    cout<<"\nTranspose Matrix is:\n";
+    for(int j=0;j<3;j++){
+            for(int i=0;i<3;i++){
+                  temp.arr[j][i]=arr[i][j];
+            }
+        }
+    return temp;
+}
+bool Matrix::is_singular()
+{
+    int detreminant,a,b,c;
+    a=arr[1][1]*(arr[2][2]*arr[3][3]-arr[2][3]*arr[3][2]);
+    b=arr[1][2]*(arr[2][1]*arr[3][3]-arr[2][3]*arr[3][1]);
+    c=arr[1][3]*(arr[2][1]*arr[3][2]-arr[2][2]*arr[3][1]);
+    detreminant=a-b+c;
+    if(detreminant==0)
+    return 1;//singular martrix
+    else
+    return 0;//not
+}
+
+int pro5()
+{
+    Matrix a,b,c;
+    // a.setData();
+    // b.setData();
+    // a.getData();
+    // cout<<endl;
+    // b.getData();
+
+    // c=a.multiply(b);
+    // cout<<endl;
+    // c.getData();
+
+    //transpose
+    // a.setData();
+    // cout<<endl<<"Matrix is:\n";
+    // a.getData();
+    // a=a.transpose();
+    // a.getData();
+    
+    a.setData();
+    cout<<a.is_singular();
     return 0;
 }
