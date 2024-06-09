@@ -74,8 +74,6 @@ class Date
     }
     void getDate3()
     {
-       
-
         cout<<d<<"-";
         switch(m)
         {
