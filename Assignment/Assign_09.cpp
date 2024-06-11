@@ -42,7 +42,7 @@ Complex Complex::multiply(Complex C)
 {
     Complex temp;
     temp.a=((a*C.a)-(b*C.b));
-    temp.b=((a*C.b)+(C.a*b));
+    temp.b=((a*C.b)+(b*C.a));
     return temp;
 }
 
@@ -62,7 +62,7 @@ class Time
     private:
     int h,m,s;
     public:
-    void setTime(int,int ,int);
+    void setTime(int,int,int);
     void showTime();
     void normalize();
     Time add(Time);
@@ -92,6 +92,7 @@ Time Time::add(Time x)
     temp.s=s+x.s;
     temp.m=m+x.m;
     temp.h=h+x.h;
+    temp.normalize();
     return temp;
 }
 bool Time::is_greater(Time x)
