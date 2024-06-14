@@ -125,7 +125,7 @@ int pro2()
     return 0;
 }
 
-//Program 3
+/* //Program 3
 class testResult
 {
     private:
@@ -192,7 +192,7 @@ int pro4()
     }
     return 0;
 }
-
+ */
 //Program 5
 class Matrix
 {
@@ -302,5 +302,89 @@ int pro5()
     
     a.setData();
     cout<<a.is_singular();
+    return 0;
+}
+
+
+//Program 3
+class testResult
+{
+    private:
+    int roll_no,right,wrong,net_score;
+    static int right_weightage,wrong_weightage;
+    public:
+    void setRollno(int x){roll_no=x;}
+    void setRight(int x){right=x;}
+    void setWrong(int x){wrong=x;}
+    void setnet_score(int x){net_score=x;}
+    static void setright_weightage(int x){right_weightage=x;}
+    static void setwrong_weightage(int x){wrong_weightage=x;}
+ 
+    int getRollno(){return roll_no;}
+    int getRight(){return right;}
+    int getWrong(){return wrong;}
+    int getnet_score(){return net_score;}
+    static int getright_weightage(){return right_weightage;}
+    static int getwrong_weightage(){return wrong_weightage;}  
+};
+int testResult::right_weightage;
+int testResult::wrong_weightage;
+void setTestResult(testResult &t,int r,int right,int wrong)
+{
+    t.setRollno(r);
+    t.setRight(right);
+    t.setWrong(wrong);
+    t.setnet_score((right*testResult::getright_weightage())-(wrong*testResult::getwrong_weightage()));
+}
+void sortByNetScore(testResult arr[],int size)
+{
+    int round,i;
+    testResult temp;
+    for(round=1;round<size;round++)
+    {
+        for(i=0;i<=size-1-round;i++)
+        {
+            if(arr[i].getnet_score()<arr[i+1].getnet_score())
+            {
+                temp=arr[i];
+                arr[i]=arr[i+1];
+                arr[i+1]=temp;
+            }
+        }
+    }
+}
+void showTestResults(testResult arr[],int size){
+    cout<<endl;
+    cout<<"--------------------------------------";
+    cout<<endl;
+    cout<<"Roll No  Right  Wrong  Net Score";
+    for(int i=0;i<size;i++)
+    {
+        cout<<endl;
+        cout<<arr[i].getRollno()<<"  ";
+        cout<<arr[i].getRight()<<"  ";
+        cout<<arr[i].getWrong()<<"  ";
+        cout<<arr[i].getnet_score()<<"  ";
+    }
+}
+int main()
+{
+    testResult arr[5];
+    testResult::setright_weightage(3);
+    testResult::setwrong_weightage(1);
+    int r,right,wrong;
+    for(int i=0;i<5;i++)
+    {
+        cout<<"Enter details for test result "<<i+1<<endl;
+        cout<<"Enter rollno: ";
+        cin>>r;
+        cout<<"Enter number of right answers: ";
+        cin>>right;
+        cout<<"Enter number of wrong answers: ";
+        cin>>wrong;
+        setTestResult(arr[i],r,right,wrong);
+    }
+    sortByNetScore(arr,5);
+    showTestResults(arr,5);
     return 0;
 }
