@@ -1,2 +1,2 @@
-
-//Program 5
+int *ptr = 
+    // *ptr=100;
