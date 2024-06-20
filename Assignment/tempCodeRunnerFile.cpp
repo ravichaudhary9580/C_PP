@@ -1,2 +1,2 @@
-int *ptr = 
-    // *ptr=100;
+    // a.reduce();
+    // b.reduce();

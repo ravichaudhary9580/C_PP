@@ -75,8 +75,8 @@ class Time
 
     void showTime();
     bool operator>(Time);
-    void operator++();//pre-increment
-    //Post-increment
+    Time operator++();//pre-increment
+    Time operator++(int);//Post-increment
     Time operator+(Time);
 };
 
@@ -95,7 +95,7 @@ bool Time::operator>(Time a)
     else
     return 0;
 }
-void Time::operator++()//pre-increment
+Time Time::operator++()//pre-increment
 {
     ++second;
     if(second==60)
@@ -108,9 +108,24 @@ void Time::operator++()//pre-increment
         min=0;
         ++hour;
     }
-
+    return *this;
 }
-//Post-increment
+Time Time::operator++(int)//post-increment
+{
+    Time temp=*this;
+    ++second;
+    if(second==60)
+    {
+        second=0;
+        ++min;
+    }
+    if(min==60)
+    {
+        min=0;
+        ++hour;
+    }
+    return temp;
+}
 Time Time::operator+(Time x)
 {
     Time temp;
@@ -202,7 +217,7 @@ int main()
    /*  a=a+b;
     a.getData();
     a=a-b;
-    a.getData() */;
+    a.getData();*/
     a=a*b;
     a.getData();
     return 0;
