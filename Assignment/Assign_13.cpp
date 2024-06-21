@@ -105,7 +105,15 @@ class Distance
     Distance operator+(Distance);
     Distance operator++();//pre-increment
     Distance operator++(int);//post-increment
+    Distance operator--();//pre-decrement
+    Distance operator--(int);//post-decrement
+    friend ostream& operator<<(ostream&,Distance);
 };
+ostream& operator<<(ostream& dout,Distance x)
+{
+   dout<<x.km<<"km "<<x.m<<"m "<<x.cm<<"cm"<<endl;
+    return dout;
+}
 void Distance::setDistance(int x,int y,int z)
     {
         km=x;
@@ -136,6 +144,7 @@ Distance Distance::operator+(Distance x)
     temp.km=km+x.km;
     temp.m=m+x.m;
     temp.cm=cm+x.cm;
+    temp.normalize();
     return temp;
 }
 Distance Distance::operator++()
@@ -151,22 +160,84 @@ Distance Distance::operator++(int)
     normalize();
     return temp;
 }
-int pro34()
+Distance Distance::operator--()
+{
+
+    Distance temp;
+   if(km==0&&m==0&&cm==0)
+   {
+        temp.km=km;
+        temp.m=m;
+        temp.cm=cm;
+   }
+    else
+    {
+        if(cm==0)
+        {
+            cm=100;
+            if(m==0)
+            {
+                m=999;
+                --km;
+            }
+            else
+            --m;
+        }
+        temp.cm=--cm;
+        temp.m=m;
+        temp.km=km;
+   }
+    return temp;
+}
+Distance Distance::operator--(int)
+{
+    Distance temp=*this;
+    if(km==0&&m==0&&cm==0)
+    {
+        this->km=km;
+        this->m=m;
+        this->cm=cm;
+    }
+
+    else
+    {
+        if(cm==0)
+        {
+            cm=100;
+            if(m==0)
+            {
+                m=999;
+                --km;
+            }
+            else
+            --m;
+        }
+        this->cm=--cm;
+        this->m=m;
+        this->km=km;
+    }
+    return temp;
+}
+
+
+int main()
 {
     Distance a,b,sum;
-    a.setDistance(2,300,105);
-    b.setDistance(2,300,105);
-    sum=a+b;
-    sum.getDistance();
-    for(int i=0;i<1000000;i++)
-    sum++;
-    cout<<endl;
-    sum.getDistance();
+    a.setDistance(2,300,5);
+    // b.setDistance(2,300,105);
+    // sum=a+b;
+    // sum.getDistance();
+    // for(int i=0;i<1000000;i++)
+    // sum++;
+    // cout<<endl;
+    // sum.getDistance();
+    cout<<a--;
+    a.getDistance();
     return 0;
 }
 
 //Problem 5
 class Array
 {
-    
-}
+
+};
