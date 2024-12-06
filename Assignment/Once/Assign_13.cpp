@@ -220,7 +220,7 @@ Distance Distance::operator--(int)
 }
 
 
-int main()
+int pro34()
 {
     Distance a,b,sum;
     a.setDistance(2,300,5);
@@ -239,5 +239,30 @@ int main()
 //Problem 5
 class Array
 {
-
+    private:
+    int *p;
+    int size;
+    public:
+    Array(int x)
+    {
+        size=x;
+        p=new int[size];
+    }
+    int& operator[](int index)
+    {
+        if(index>=0&&index<size)
+        return p[index];
+        
+        cout<<"Invalid Array index";
+        return p[0];
+    }
+    ~Array()
+    {
+        delete []p;
+    }
 };
+int main()
+{
+    Array a1(5);
+    a1[5];
+}
